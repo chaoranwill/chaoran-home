@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css渲染规则</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <style type="text/css">
+    	.redfont{color: red}
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+	var Hello = React.createClass({
+		render: function(){
+			//定义样式内容，样式obj
+			var styleObj = {
+				color: 'red',
+				fontSize:'32px'
+			};
+			//className代替class
+			return <div className="redfont" style={styleObj}>hello {this.props.name}</div>;
+		}
+	});
+
+	var Introduce = React.createClass({
+		getInitialState:function(){
+			alert('init');
+			return {
+				opacity:1.0
+			};
+		},
+		render: function(){
+			return <div style={{fontSize:'44px',opacity:this.state.opacity,color:this.state.color}}>{this.props.info}</div>;
+		},
+		componentWillMount: function(){
+			alert('will');
+		},
+		componentDidMount: function(){
+			alert('did');
+
+			var _self = this;
+			window.setTimeout(function(){
+				_self.setState({
+					opacity:0.5,
+					color:'green'
+				});
+			},1000);
+		}
+	});
+
+	ReactDOM.render(
+		<div>
+			<Hello name="chaoran"/>
+			<Introduce info="I am a student"/>
+		</div>
+		,document.getElementById('container')
+	);
+</script>
+</body>
+</html>
