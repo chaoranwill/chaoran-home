@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>练习</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="../react-demos/build/jquery.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+	var ListItem = React.createClass({
+		getInitialState: function () {
+			return {
+				loading: true,
+				data: ''
+			};
+		},
+
+		componentDidMount: function () {
+			$.get(this.props.source,function (result) {
+				if (this.isMounted) {
+					this.setState({
+						loading: false,
+						data: result
+					});
+					console.log(this.state.data);
+				}
+			}.bind(this))
+		},
+
+		render: function () {
+			if (this.state.loading) {
+				return <span>loading...</span>;
+			}else{
+				var items = this.state.data.items;
+				var itemsList = items.map(function(item,index){
+					return (
+						<li key={index}><a href={item.html_url}>{item.name}</a> <br/>{item.description}</li>
+						);
+				});
+				return(
+					<main>
+						<h1>projects</h1>
+						<ol>{itemsList}</ol>
+					</main>
+				);
+			}
+		}
+	});
+
+	ReactDOM.render(
+		<ListItem source='https://api.github.com/search/repositories?q=javascript&sort=stars' />,
+		document.getElementById('container')
+	);
+</script>
+</body>
+</html>

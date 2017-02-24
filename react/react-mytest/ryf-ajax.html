@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react中的ajax</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="../react-demos/build/jquery.min.js"></script>
+</head>
+<body>
+<div>11</div>
+<div id="container"></div>
+<script type="text/babel">
+	var GetAjax = React.createClass({
+		getInitialState: function () {
+			return {
+				username: '',
+				lastGistUrl: ''
+			};
+		},
+
+		componentDidMount: function () {
+			$.get(this.props.source,function (result) {
+				var lastGist = result[0];
+				if (this.isMounted()) {
+					this.setState({
+						username: lastGist.owner.login,
+						lastGistUrl:lastGist.html_url
+					});
+					console.log(result[0]);
+				}
+			}.bind(this));
+		},
+
+		render: function () {
+			return (
+				<div>
+					{this.state.username}'s last gist is <a href = {this.state.lastGistUrl}>here</a>
+				</div>
+			);
+			
+		}
+	});
+
+	ReactDOM.render(
+		<GetAjax source="https://api.github.com/users/octocat/gists"/>,
+		document.getElementById('container')
+	);
+</script>
+</body>
+</html>

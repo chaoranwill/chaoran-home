@@ -13,12 +13,12 @@
     <script type="text/babel">
     	var HelloMessage = React.createClass({
     		render:function(){
-    			return <div>hello {this.props.name}</div>;
+        			return <div>hello {this.props.name}{this.props.grade}</div>;
     		}
     	});
 
     	ReactDOM.render(
-    		<HelloMessage name="chaoran"/>,
+    		<HelloMessage name="chaoran" grade="graduate"/>,
     		document.getElementById('container'));
     </script>
 </body>

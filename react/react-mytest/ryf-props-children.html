@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+//this.props.children 表示组件的所有子节点
+//this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
+//
+	var Nodes = React.createClass({
+		render: function () {
+			return(
+					<ul>
+						{
+							React.Children.map(
+								this.props.children,function(child){
+									return <li>{child}</li>
+								})
+						}	
+					</ul>
+				)
+			
+		}
+	});
+
+	ReactDOM.render(
+			<Nodes>
+				<span>hello</span>
+				<span>你好</span>
+			</Nodes>,
+			document.getElementById('container')
+	);
+</script>
+</body>
+</html>

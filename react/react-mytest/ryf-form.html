@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表单</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+	var MyForm = React.createClass({
+		getInitialState: function () {
+			return {value: 'hello chaoran'};
+		},
+		handleChange: function (event) {
+			this.setState({value: event.target.value});
+		},
+		render: function () {
+			var value = this.state.value;
+			return (
+				<div>
+					<input type="text" value={value} onChange={this.handleChange} />
+					<p>{value}</p>
+				</div>
+			);
+		}
+	});
+
+	ReactDOM.render(
+		<MyForm />,
+		document.getElementById('container')
+		);
+</script>
+</body>
+</html>
