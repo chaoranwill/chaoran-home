@@ -15,7 +15,11 @@ Array.prototype.remove=function(dx)
 };
 
 export default Reflux.createStore({
-	items:[],
+	items:[
+		{
+			name: '1'
+		}
+	],
 	listenables: [actions],
 
 	onAdd(item){

@@ -2,12 +2,12 @@ import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, browserHistory, IndexRoute } from 'react-router';
-import Home from './pages/Home';
-import Project from './pages/Project';
-import Team from './pages/Team';
-import Record from './pages/Record';
-import Memo from './pages/Memo';
-import Mine from './pages/Mine';
+import Home from './components/pages/Home';
+import Project from './components/pages/Project';
+import Team from './components/pages/Team';
+import Record from './components/pages/Record';
+import Memo from './components/pages/Memo';
+import Mine from './components/pages/Mine';
 
 // Render the main component into the dom
 ReactDOM.render((

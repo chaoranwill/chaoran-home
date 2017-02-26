@@ -17,6 +17,7 @@ export default class Todo extends React.Component {
 
   render() {  	
   	if (this.state.list) {
+  		console.log(this.state)
   		return (
 	    	<div>
 		      <div className="index">
