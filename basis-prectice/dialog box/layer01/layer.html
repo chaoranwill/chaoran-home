@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>弹出浮层</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        .m-outer button{float: left!important;}
+        .m-layer{
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .layer{
+            position: fixed;
+            width: 400px;
+            font-family: 'microsoft yahei';
+        }
+        header{
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+            background: #fafafa;
+            font-weight: bold;
+            cursor: move;
+            border-bottom:1px solid #ddd;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        section{
+            background: #fff;
+            padding: 20px;
+            border-bottom:1px solid #ddd;
+            font-size: 14px;
+
+        }
+        footer{
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+            background: #fafafa;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        h2{
+            display: inline-block;
+            float: left;
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+        }
+        span{
+            display: inline-block;
+            float: right;
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+        }
+        p{
+            margin: 0;
+        }
+        footer p{
+            float: left;
+            font-size: 15px;
+            color: #999;
+            width: 50%;
+        }
+        button{
+            display: inline-block;
+            float: right;
+            padding:7px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-sizing: content-box;
+        }
+        button:first-child{
+            background-color: #399dd8;
+            border: 1px solid #2d88bf;
+            color: #333;
+        }
+        button:last-child{
+            background-color: #399dd8;
+            color: #fff;
+            border: 1px solid #d0d0d0;
+            margin-right: 8px;
+        }
+        .layer-display{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-outer"><button class="m-outer-bt">click</button></div>
+    <div class="m-layer">
+        <div class="layer">
+            <header>
+                <h2>标题</h2>
+                <span>×</span>
+            </header>
+            <section>
+                <p>you are so beautiful/handsome!</p>
+                <p></p>
+            </section>
+            <footer>
+                <p>如承认请选YES</p>
+                
+                <button class="bt-no">NO</button>
+                <button class="bt-yes">YES</button>
+            </footer>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var isclick=false;
+        var dx,dy;
+        function disnone(){
+            $('.m-layer').removeClass('layer-display');
+        }
+        $(function(){
+            $('.m-outer-bt').click(function(){
+            $('.m-layer').addClass('layer-display');
+            $('.layer').css({
+                'left': ($(document).width()-400)/2,
+                'top': ($(window).height()-300)/2
+            });
+        });
+            $('header').mousedown(function(){
+            isclick=true;
+            dx = event.pageX - parseInt($('.layer').css('left'));
+            dy = event.pageY - parseInt($('.layer').css('top'));
+            $('.layer').fadeTo('fast',0.5);
+        });
+        $('header').mousemove(function(){
+            if(isclick){
+                $('.layer').css({
+                    left: event.pageX - dx,
+                    top:  event.pageY - dy,
+                    cursor:'move'
+                })
+            }
+        }).mouseup(function() {
+            if (isclick) {
+                $('.layer').fadeTo('fast',1).css('cursor','default');
+                isclick = false;
+            };
+        });
+        
+        $('header span').click(function() {
+            disnone();
+        });
+        $(".bt-no").click(function() {
+            disnone();
+        });
+        $('.bt-yes').click(function(){
+            disnone();
+        })
+        });
+        
+    </script>
+</body>
+</html>

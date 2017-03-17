@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>demo01</title>
+	<script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="all">
+		<ul>
+			<li>
+				<div class="cloth_item">
+					<img src="image/nike.png">
+					<div class="view"></div>
+					<div class="cloth">
+						<span class="cloth_name">Nike</span>
+						<span class="cloth_price">$39</span>
+						<span class="cloth_decoration">Men's running shirt</span>
+						<div class="detail">
+							<span class="cloth_sizes">Sizes</span>
+							<span class="cloth_size">XS,S,M,L,XL,XXL</span>
+							<span class="cloth_colors">Colors</span>
+							<ul class="detail_ul">
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<ul>
+			<li>
+				<div class="cloth_item">
+					<img src="image/addidas.png">
+					<div class="view"></div>
+					<div class="cloth">
+						<span class="cloth_name">Nike</span>
+						<span class="cloth_price">$39</span>
+						<span class="cloth_decoration">Men's running shirt</span>
+						<div class="detail">
+							<span class="cloth_sizes">Sizes</span>
+							<span class="cloth_size">XS,S,M,L,XL,XXL</span>
+							<span class="cloth_colors">Colors</span>
+							<ul class="detail_ul">
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<ul>
+			<li>
+				<div class="cloth_item">
+					<img src="image/nike.png">
+					<div class="view"></div>
+					<div class="cloth">
+						<span class="cloth_name">Nike</span>
+						<span class="cloth_price">$39</span>
+						<span class="cloth_decoration">Men's running shirt</span>
+						<div class="detail">
+							<span class="cloth_sizes">Sizes</span>
+							<span class="cloth_size">XS,S,M,L,XL,XXL</span>
+							<span class="cloth_colors">Colors</span>
+							<ul class="detail_ul">
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<ul>
+			<li>
+				<div class="cloth_item">
+					<img src="image/addidas.png">
+					<div class="view"></div>
+					<div class="cloth">
+						<span class="cloth_name">Nike</span>
+						<span class="cloth_price">$39</span>
+						<span class="cloth_decoration">Men's running shirt</span>
+						<div class="detail">
+							<span class="cloth_sizes">Sizes</span>
+							<span class="cloth_size">XS,S,M,L,XL,XXL</span>
+							<span class="cloth_colors">Colors</span>
+							<ul class="detail_ul">
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var colors=["#f75375","#53a0f7","#59cfaf","#c7c7c7","#4e5156","#2060af"];
+		
+		function over(first,second){
+			clearInterval(first.timer);
+			first.timer=setInterval(function(){
+				if(first.offsetTop==197){
+					clearInterval(first.timer);
+				}else{
+					first.speed=(first.offsetTop-197)/10;
+					first.style.top=first.offsetTop-first.speed+"px";
+				}
+			},30);
+			second.style.display="block";
+		}
+
+		function out(first,second){
+			clearInterval(first.timer);
+			first.timer=setInterval(function(){
+				if(first.offsetTop==328){
+					clearInterval(first.timer);
+				}else{
+					first.speed=(first.offsetTop-328)/10;
+					first.style.top=first.offsetTop-first.speed+"px";
+				}
+			},30);
+			second.style.display="none";
+		}
+		var aDivs=$(".cloth_item");
+		for(var i=0;i<aDivs.length;i++){
+			aDivs[i].onmouseover=function(){
+				var clothDiv=this.getElementsByTagName("div");
+				over(clothDiv[1],clothDiv[0]);
+			}
+			aDivs[i].onmouseout=function(){
+				var clothDiv=this.getElementsByTagName("div");
+				out(clothDiv[1],clothDiv[0]);
+			}
+		}
+
+		var aUls=$(".detail_ul");
+		for(var i=0;i<aUls.length;i++){
+			var alis=aUls[i].getElementsByTagName("li");
+			for(var j=0;j<alis.length;j++){
+				alis[j].style.background=colors[j];
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>index</title>
+	<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+	<script>
+		$(function(){
+			$('#dlgOpen').click(function(){
+				$.dialog({
+					//'title':'测试',
+					//'content':'<p style=\'color:red\'>哈哈</p><p style=\'color:red\'>哈哈</p>'
+					//'params':'blue',
+					//'fun':changeBg
+				});
+			});
+			$('#dlgClose').click(function(){
+				$('#dialog').remove();
+			});
+			//function changeBg(color){
+			//	$('.dialog-head').css('background-color',color);
+			//}
+		});
+		(function($){
+			$.extend({
+				dialog:function(options){
+					var defaultOptions={
+						title:'这是一个对话框',
+						content:'<div>内容</div>',
+						width:400,
+						height:200,
+						position:'fixed',
+						trigger:'click',
+						params:'',  //函数参数
+						fun:false  //绑定的函数名
+					}
+					defaultOptions.top=($(window).height()-defaultOptions.height-128)/2+'px';
+					defaultOptions.left=($(window).width()-defaultOptions.width)/2+'px';
+					var obj=$.extend(defaultOptions,options);
+					var dialog=$("<div class='dialog' id='dialog'></div>").css({
+						'width':obj.width,
+						'position':obj.position,
+						'top':obj.top,
+						'left':obj.left
+					});
+					var head=$("<div class='dialog-head'><span class='title'>"+obj.title+"</span><span class='close'>×</span></div>");
+					var body=$("<div class='dialog-body'>"+obj.content+"</div>").css({'height':obj.height});
+					var foot=$("<div class='dialog-foot'><button class='button blue save_btn'>保存</button><button class='button close_btn'>关闭</button></div>");
+					var dialogBox=dialog.append(head).append(body).append(foot);
+					$('body').append(dialogBox);
+					$('.close,.close_btn').click(function(){
+						$('#dialog').remove();
+					});
+					$('.save_btn').on(obj.trigger,function(){
+						if(obj.fun)
+							obj.fun(obj.params);
+						else
+							saveContent();
+						$('#dialog').remove();
+						return false;
+					});
+					function saveContent(){$('#content').html(defaultOptions.content);}
+				}
+			});
+		})(jQuery);
+	</script>
+	<style>
+		*{color:#333;font-family:"Microsoft YaHei";-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+		.dialog{margin:0 auto;border-radius:4px;border:1px solid #ccc;box-shadow:0 0 10px #333;color:#959595}
+		.dialog .dialog-head{border-bottom:1px solid #DDD;background-color:#F5F5F5;border-radius:4px 4px 0px 0px;}
+		.dialog .dialog-head .close{float:right;cursor:pointer;font-size:24px;line-height:22px;}
+		.dialog .dialog-body{padding:15px 20px;overflow:auto;}
+		.dialog .dialog-foot{text-align:right;}
+		.dialog .dialog-head,.dialog .dialog-foot{padding:10px 20px;}
+		.button{border:1px solid #DDD;border-radius:4px;padding:6px 15px;margin:0px;display:inline-block;cursor:pointer;margin:0 2px;}
+		.blue{background:#4b8efa;color:#fff}
+	</style>
+</head>
+<body>
+	<a href="javascript:;" id='dlgOpen'>打开对话框</a>
+	<a href="javascript:;" id='dlgClose'>关闭对话框</a>
+	<div id='content'></div>
+</body>
+</html>

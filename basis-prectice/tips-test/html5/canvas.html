@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas" width="500" height="500">
+		<p>升级一下浏览器吧</p>
+	</canvas>
+	<canvas id="demoCanvas" width="500" height="500"></canvas>
+	<!-- 绘制矩形的demo -->
+	<script type="text/javascript">
+		/*获取canvas元素*/
+		var canvasDom = document.getElementById('myCanvas'); 
+		/*通过canvas dom对象获取context的对象*/
+		var context = canvasDom.getContext('2d'); 
+		/*制定绘制线样式、颜色*/     
+		context.strokeStyle = 'blue';
+		/*绘制矩形，只有线，内容是空的*/
+		context.strokeRect(10,10,190,100);
+		/*以下为填充矩形*/
+		context.fillStyle = 'blue';
+		context.fillRect(110,110,100,100);
+
+		/*开始路径绘制*/
+		context.beginPath();
+		/*设置路径起点，坐标为（210，10）*/
+		context.moveTo(210,10);
+		/*绘制一条到（400，10）的直线*/
+		context.lineTo(400,10);
+		context.lineTo(400,100);
+		context.lineTo(210,100);
+		/*自动封闭路径，形成闭环，省去一次lineto*/
+		context.closePath();
+		/*设置线宽*/
+		context.lineWidth = 2.0;
+		/*设置线的颜色*/
+		context.strokeStyle = '#c00';
+		/*给透明的线段着色*/
+		context.stroke();
+
+		/*绘制文本*/
+		var canvasDom2 = document.getElementById("demoCanvas");
+		var context2 = canvasDom2.getContext('2d');
+		context2.moveTo(10,350);
+		context2.font = "Bold 50px Arial";
+		context2.textAlign = "left";
+		context2.fillStyle = "#005600";
+		context2.fillText("木子水上月",10,50);
+		context2.strokeText("chaoran",10,100);
+	</script>
+</body>
+</html>

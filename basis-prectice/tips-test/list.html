@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表导航</title>
+    <style type="text/css">
+        a {
+            text-decoration:none;
+            font-family: Arial;
+            font-size: 16px;
+            color: black;
+        }
+        ul,li{list-style-type: none;}
+        .m-list1 li:before{
+            display:inline-block;
+            border:2px solid;
+            content: '';
+            margin:0 8px 2px 10px;
+            vertical-align: middle;
+        }
+        .m-list2 li:before{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="m-list1">
+            <li><a href="#">主菜单导航项</a></li>
+            <li><a href="#">导航项</a></li>
+            <li><a href="#">导航项</a></li>
+            <li><a href="#">导航项</a></li>
+        </ul>
+        <ul class="m-list1 m-list2">
+            <li><a href="#">主菜单导航项</a></li>
+            <li><a href="#">导航项</a></li>
+            <li><a href="#">导航项</a></li>
+            <li><a href="#">导航项</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

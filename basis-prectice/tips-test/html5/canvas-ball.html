@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚落的小球</title>
+</head>
+<body>
+	<canvas id="mycanvas" style="border: 1px solid #ccc; margin-left: 100px;"></canvas>
+	<script type="text/javascript">
+	var ball = {x:500,y:50,r:8,g:2,vx:-4,vy:0,color:"blue"};
+	window.onload = function () {
+		var canvas = document.getElementById('mycanvas');
+		var context = canvas.getContext('2d');
+		canvas.width = 800;
+		canvas.height = 400;
+		setInterval(function () {
+			render(context);
+			update();
+		}, 50);
+	}
+
+	function update () {
+		ball.x += ball.vx;
+		ball.y += ball.vy;
+		ball.vy += ball.g;
+		if (ball.y >= 400-ball.r) {
+			ball.vy = -ball.vy*0.7;
+		};
+	}
+
+	function render (ctxt) {
+		ctxt.clearRect(0,0,ctxt.canvas.width,ctxt.canvas.height);
+		console.log(ctxt.canvas.width);
+		ctxt.beginPath();
+		ctxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+		ctxt.closePath();
+		ctxt.fillStyle = ball.color;
+		ctxt.fill();
+	}
+		
+	</script>
+</body>
+</html>

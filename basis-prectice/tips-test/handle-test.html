@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>handlebar</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../user/scripts/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../user/scripts/handlebars.min.js"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <div id="datalist">
+        
+    </div>
+    <script id="list-tp" type="text/x-handlebars-template">
+        {{#each this}}
+        {{addone @index}}
+        {{name}}
+         {{#each info}}
+            {{../_index}}.{{@index}}
+           {{../name}}的{{this}}<br>
+         {{/each}}
+       {{/each}}
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+         //模拟的json对象
+          var data = [{
+                       "name":"张三",
+                       "info":[
+                         "眼睛",
+                         "耳朵",
+                         "鼻子"
+                       ]
+                     },{
+                       "name":"李四",
+                       "info":[
+                         "爸爸",
+                         "妈妈",
+                         "妻子"
+                       ]
+                     }];
+
+        var myTemplate = Handlebars.compile($('#list-tp').html());
+        Handlebars.registerHelper("addone",function(index,options){
+            this._index = index + 1;
+            return this._index;
+        })
+        $('#datalist').append(myTemplate(data));
+    });
+    </script>
+</body>
+</html>

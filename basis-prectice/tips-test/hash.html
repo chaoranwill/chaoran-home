@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../user/scripts/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+    body {
+            overflow-x: hidden;
+        }
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+        .header {
+            font-weight: 18px;
+            color: red;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+        .cho_link {
+            background: url(../image/choose_bg.png) no-repeat;
+        }
+
+        .cho_search {
+            width: 170px;
+            margin-right: -20px;
+            padding-right: 20px;
+            *vertical-align: -2px;
+        }
+
+        .cho_box {
+            border: 1px solid #bfbfbf;
+            background-color: #ebebeb;
+            *position: relative;
+            overflow-y: hidden;
+        }
+
+        .cho_line {
+            display: block;
+            padding-top: 2px;
+            background-color: #d2d2d2;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cho_left {
+            width: 20%;
+            margin-right: 10px;
+            float: left;
+            position: relative;
+        }
+
+
+
+        .cho_menu {
+            padding-bottom: 72px;
+            padding-top: 1px;
+        }
+
+        .cho_link, .cho_link_on {
+            display: block;
+            line-height: 32px;
+            padding-left: 19px;
+            color: #333;
+            *zoom: 1;
+        }
+
+        .cho_link {
+            background-color: #fafafa;
+            border-bottom: 1px solid #f6f6f6;
+            outline: none;
+        }
+
+            .cho_link:hover {
+                background: #f6f6f6;
+                border-bottom: 1px solid #e0e0e0;
+                text-decoration: none;
+            }
+
+        .cho_link_on {
+            margin: -1px -1px 0 0;
+            background: #ebebeb;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            position: relative;
+            cursor: default;
+        }
+
+            .cho_link_on:first-child {
+                border-top: 0;
+            }
+
+            .cho_link_on:hover {
+                text-decoration: none;
+            }
+            .dib-baseline {
+  display: inline-block; width: 150px; height: 150px;
+  border: 1px solid #cad5eb; background-color: #f0f3f9;
+}
+    </style>
+</head>
+<body>
+    <div class="header">head</div>
+    <div class="center">
+        <!-- 左边的选菜项 -->
+        <div class="cho_left">
+            <ul id="choMenu" class="rel cho_menu">
+                <li><a href="ajax.aspx?area=pudong" class="cho_link cho_link_on">浦东区</a></li>
+                <li><a href="ajax.aspx?area=baoshan" class="cho_link">宝山区</a></li>
+                <li><a href="ajax.aspx?area=jiading" class="cho_link ">嘉定区</a></li>
+                <li><a href="ajax.aspx?area=qingpu" class="cho_link">青浦区</a></li>
+                <li><a href="ajax.aspx?area=minhang" class="cho_link">闵行区</a></li>
+                <li><a href="ajax.aspx?area=putuo" class="cho_link">普陀区</a></li>
+                <li><a href="ajax.aspx?area=jinshan" class="cho_link">金山区</a></li>
+                <li><a href="ajax.aspx?area=songjiang" class="cho_link">松江区</a></li>
+                <li><a href="ajax.aspx?area=zhabei" class="cho_link">闸北区</a></li>
+                <li><a href="ajax.aspx?area=fengxian" class="cho_link">奉贤区</a></li>
+                <li><a href="ajax.aspx?area=huangpu" class="cho_link">黄浦区</li>
+                <li><a href="ajax.aspx?area=changning" class="cho_link">长宁区</a></li>
+                <li><a href="ajax.aspx?area=jingan" class="cho_link">静安区</a></li>
+                <li><a href="ajax.aspx?area=zhoubian" class="cho_link">上海周边</a></li>
+            </ul>
+        </div>
+
+        <!-- 右侧主列表 -->
+        <div class="cell">
+            <div id="listBox">
+                右侧显示相应的内容
+            </div>
+        </div>
+    </div>
+    <div class="header">footer</div>
+    <span class="dib-baseline"></span>
+<span class="dib-baseline">x-baseline</span>
+</body>
+<script type="text/javascript">
+    //给每个左侧链接绑定事件
+        var eleMenus = $("#choMenu a").bind("click", function (event) {
+            //获得querystring的值
+            var query = this.href.split("?")[1];
+            //将左侧列表链接全部去掉高亮
+            $("#choMenu a").removeClass('cho_link_on');
+            //给当前点击的链接加高亮
+            $(this).addClass('cho_link_on');
+            //如果存在history.pushState状态  且有queryString的值
+            if (history.pushState && query) {
+                var curText = $(this).text();
+                //给右侧内容框赋值
+                $('#listBox').text(curText);
+                // history处理
+
+                document.title = "history demo-" + curText;
+                if (event && /\d/.test(event.button)) {
+                    //history.pushState使得页面的URL地址变化了
+                    history.pushState({ title: title }, title, location.href.split("?")[0] + "?" + query);
+                }
+            }
+            return false;
+        });
+
+        var fnHashTrigger = function (target) {
+            var query = location.href.split("?")[1], eleTarget = target || null;
+            //页面首次载入，没有queryString的值
+            if (typeof query == "undefined") {
+                if (eleTarget = eleMenus.get(0)) {
+                    // 如果没有查询字符，则使用第一个导航元素的查询字符内容
+                    history.replaceState(null, document.title, location.href.split("#")[0] + "?" + eleTarget.href.split("?")[1]) + location.hash;
+                    fnHashTrigger(eleTarget);
+                }
+            } else {
+                eleMenus.each(function () {
+                    if (eleTarget === null && this.href.split("?")[1] === query) {
+                        eleTarget = this;
+                    }
+                });
+
+                if (!eleTarget) {
+                    // 如果查询序列没有对应的导航菜单，去除查询然后执行回调
+                    history.replaceState(null, document.title, location.href.split("?")[0]);
+                    fnHashTrigger();
+                } else {
+                    $(eleTarget).trigger("click");
+                }
+            }
+        };
+
+        if (history.pushState) {
+            //页面无刷新的，原先ajax请求的数据加载过来了  这就是popstate事件的作用
+            window.addEventListener("popstate", function () {
+                fnHashTrigger();
+            });
+
+            // 默认载入
+            fnHashTrigger();
+        }
+</script>
+</html>

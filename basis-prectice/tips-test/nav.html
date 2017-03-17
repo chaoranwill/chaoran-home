@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面包屑导航</title>
+    <style type="text/css">
+        li{list-style-type:none;float:left;}
+        a {text-decoration:none;font-family: Arial;font-size: 16px; color:black;}
+        .m-crumb{overflow:hidden;margin:10px 20px;}
+        .f-outer li:before{
+            display:inline-block;
+            width:20px;
+            text-align:center;
+            content: '|';
+        }
+        ul.f-outer{margin-left: -55px;}
+
+    </style>
+</head>
+<body>
+    <nav class="m-crumb">
+        <ul class="f-outer">
+            <li><a href="#">导航</a></li>
+            <li><a href="#">导航</a></li>
+            <li><a href="#">导航</a></li>
+            <li><a href="#">导航</a></li>
+        </ul>       
+    </nav>
+</body>
+</html>

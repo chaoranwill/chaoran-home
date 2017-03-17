@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>简易数据表格</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body{
+            margin: 20px; 
+            font-family: Arial; 
+            font-size: 12px;
+        }
+        .m-tb{
+            width: 100%;
+            text-align: left;
+            border-collapse: separate;   
+            border: 1px solid #ddd;  
+            border-spacing: 2px;
+            border-width: 0 1px 1px 0;       
+            color: #333;
+            table-layout: fixed;
+        }
+        .m-tb th,.m-tb td{
+            height: 1.5;
+            border: 1px solid #ddd;
+            border-width: 1px 0 0 1px;
+            padding: 10px;
+        }
+        .tb-f1{width: 100px;}
+        .tb-f2{width: 200px;}
+        .m-tb tbody tr:nth-child(2n){
+            background-color: #fafafa;
+        }
+        .m-tb tbody tr:hover{
+            background-color:#f0f0f0;
+        }
+        /*.m-tb tr th:last-child{
+            border-width: 1px 1px 0 1px;
+        }
+        .m-tb td:last-child{
+            border-width: 1px 1px 0px 1px;
+        }
+        .m-tb tbody > tr:last-child td{
+            border-width: 1px 0 1px 1px;
+        }
+        .m-tb tbody > :last-child > :last-child{
+            border-width: 1px 1px 1px  1px;
+        }*/
+        .m-tb > :first-child > :first-child > :first-child{
+            border-top-left-radius: 5px;
+        }
+        .m-tb > :first-child > :first-child > :last-child{
+            border-top-right-radius: 5px;
+        }
+        .m-tb > :last-child > :last-child > :first-child{
+            border-bottom-left-radius: 5px;
+        }
+        .m-tb > :last-child > :last-child > :last-child{
+            border-bottom-right-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table class="m-tb">
+        <thead>
+            <tr>
+                <th class="tb-f1">标题</th>
+                <th>标题</th>
+                <th class="tb-f1">标题</th>
+                <th class="tb-f1">标题</th>
+                <th class="tb-f2">标题</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="tb-f1">内容</td>
+                <td>内容内容内容内容内容内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f2">内容内容内容</td>
+            </tr>
+            <tr>
+                <td class="tb-f1">内容</td>
+                <td>内容内容内容内容内容内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f2">内容内容内容</td>
+            </tr>
+            <tr>
+                <td class="tb-f1">内容</td>
+                <td>内容内容内容内容内容内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f2">内容内容内容</td>
+            </tr>
+            <tr>
+                <td class="tb-f1">内容</td>
+                <td>内容内容内容内容内容内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f2">内容内容内容</td>
+            </tr>
+            <tr>
+                <td class="tb-f1">内容</td>
+                <td>内容内容内容内容内容内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f1">内容内容</td>
+                <td class="tb-f2">内容内容内容</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

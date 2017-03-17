@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>单片式幻灯</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../user/scripts/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        .m-slide{
+            position: relative;
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+            margin:20px;
+        }
+        .m-slide li{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+
+        }
+        .m-slide span{
+            position: absolute;
+            bottom: 10px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            z-index: 50;
+        }
+        .m-slide li.dis-first{
+            z-index: 21;
+        }
+        span a{
+            display: inline-block;
+            margin-left: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            box-shadow: 0 1px 1px rgba(1, 0, 0, 0.5);
+        }
+        .sele{
+            background-color: #40a1d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-slide">
+        <ol>
+            <li class="li-1 dis-first"><img src="img/1.jpg"/></li>
+            <li class="li-2"><img src="img/2.jpg"/></li>
+            <li class="li-3"><img src="img/3.jpg"/></li>
+            <li class="li-4"><img src="img/4.jpg"/></li>
+            <li class="li-5"><img src="img/5.jpg"/></li>
+        </ol>
+        <span>
+            <a id="1" href="#" class="sele"></a>
+            <a id="2" href="#"></a>
+            <a id="3" href="#"></a>
+            <a id="4" href="#"></a>
+            <a id="5" href="#"></a>
+        </span>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('a').click(function(){
+                var lid=".li-"+$(this).attr('id');
+                $('.sele').removeClass('sele');
+                $(this).addClass('sele');
+                $('.dis-first').removeClass('dis-first');
+                $(lid).addClass('dis-first');
+            })
+        });
+    </script>
+</body>
+</html>

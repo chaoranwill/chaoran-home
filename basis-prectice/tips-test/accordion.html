@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纯CSS手风琴</title>
+    <style type="text/css">
+        .demo{
+            width: 600px;
+            height: 250px;
+            overflow:hidden;
+            margin: 20px;
+        }
+        ul,li{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .demo li{
+            width: 120px;
+            float: left;
+            -webkit-transition:width 0.5s ease-out;
+            -moz-transition:width 0.5s ease-out;
+            -ms-transition:width 0.5s ease-out;
+            transition:width 0.5s ease-out;
+        }
+        .demo:hover li:not(:hover){
+            width: 50px;
+        }
+        .demo li:hover{
+            width: 400px;
+        }
+
+    </style>
+</head>
+<body>
+    <ul class="demo">
+        <li><a href="#"><img src="img/1.jpg"></a></li>
+        <li><a href="#"><img src="img/2.jpg"></a></li>
+        <li><a href="#"><img src="img/3.jpg"></a></li>
+        <li><a href="#"><img src="img/4.jpg"></a></li>
+        <li><a href="#"><img src="img/5.jpg"></a></li>
+    </ul>
+</body>
+</html>

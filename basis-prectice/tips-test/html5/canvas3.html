@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绘制圆形</title>
+</head>
+<body>
+	<canvas id="mycanvas" width="1200" height="600">您的浏览器不支持canvas</canvas>
+	<script  type="text/javascript">
+		var canvas = document.getElementById('mycanvas');
+		var context = canvas.getContext('2d');
+		context.beginPath();
+		context.arc(0,0,50,0,2*Math.PI);
+		context.closePath();
+		context.strokeStyle = "blue";
+		context.lineWidth = 3;
+		context.stroke();
+
+		for (var i = 1; i < 10; i++) {
+			context.beginPath();
+			context.arc((i-1)*120,60,50,0,2*Math.PI*(1+i)/10);
+			context.closePath();
+			context.lineWidth = 2;
+			context.fillStyle = "orange";
+			context.fill();
+		}
+	</script>
+</body>
+</html>

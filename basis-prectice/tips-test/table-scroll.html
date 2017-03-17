@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表头固定内容滚动的表格</title>
+    <style type="text/css">
+        table{
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            font-family: Arial;
+            font-size: 14px;
+        }
+        th,td{
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .tb-fixed{
+            width: 100px;
+        }
+        .scroll{
+            max-height: 111px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <div>
+        <thead>
+            <tr>
+                <th class="tb-fixed">定宽</th>
+                <th class="tb-fixed">定宽</th>
+                <th class="tb-fixed">定宽</th>
+                <th>最后一列不定宽</th>
+            </tr>
+        </thead></div>
+        <div class="scroll"><tbody>
+            <tr>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td>最后一列不定宽</td>
+            </tr>
+            <tr>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td>最后一列不定宽</td>
+            </tr>
+            <tr>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td>最后一列不定宽</td>
+            </tr>
+            <tr>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td>最后一列不定宽</td>
+            </tr>
+            <tr>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td class="tb-fixed">定宽</td>
+                <td>最后一列不定宽</td>
+            </tr>
+        </tbody></div>
+    </table>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>stars</title>
+</head>
+
+<body style="height: 100%; width: 100%">
+    <canvas id="mycanvas" style="height: 100%; width: 100%"></canvas>
+    <script type="text/javascript">
+    var WINDOW_WIDTH = document.body.clientWidth;
+    var WINDOW_HEIGHT = document.body.clientHeight;
+    var stars = [];
+    var starcolor1 = "#FFE00E";
+    var starcolor2 = "black";
+    var backcolor = "black";
+    var flag = 0;
+    window.onload = function(backcolor, starcolor1, starcolor2) {
+        var canvas = document.getElementById("mycanvas");
+        var context = canvas.getContext('2d');
+        canvas.width = WINDOW_WIDTH;
+        canvas.height = WINDOW_HEIGHT;
+
+        //星星样式
+        context.lineWidth = 4;
+        context.lineJoin = "round";
+
+        //绘制画布
+        context.fillStyle = backcolor;
+        context.rect(0, 0, canvas.width, canvas.height);
+        context.fill();
+        //绘制星星
+        for (var i = 0; i < 150; i++) {
+            var r = 10 * Math.random() + 10;
+            var x = Math.random() * canvas.width;
+            var y = Math.random() * canvas.height;
+            var a = Math.random() * 360;
+
+            if ((x - r) > 0 && (x + r) < canvas.width && (y - r) > 0 && (y + r) < canvas.height) {
+                var astar = {
+                    r: r,
+                    x: x,
+                    y: y,
+                    a: a
+                }
+                stars.push(astar);
+
+                drawStar(context, r, r / 2.0, x, y, a, starcolor1);
+            };
+        };
+        setInterval(redraw(context, stars), 500);
+    }
+
+    function drawStar(cxt, R, r, x, y, a, color) {
+        cxt.beginPath();
+        cxt.strokeStyle = color;
+        cxt.fillStyle = color;
+        for (var i = 0; i < 5; i++) {
+            cxt.lineTo(Math.cos((a + 18 + i * 72) / 180 * Math.PI) * R + x, -Math.sin((a + 18 + i * 72) / 180 * Math.PI) * R + y);
+
+            cxt.lineTo(Math.cos((a + 54 + i * 72) / 180 * Math.PI) * r + x, -Math.sin((a + 54 + i * 72) / 180 * Math.PI) * r + y);
+
+        };
+        cxt.closePath();
+        cxt.fill();
+        cxt.stroke();
+    }
+
+    function redraw(cxt, star) {
+        var nextcolor;
+
+        if (flag == 1) {
+            nextcolor = starcolor2;
+            flag = 0;
+        } else {
+            nextcolor = starcolor1;
+            flag = 1;
+        }
+
+        cxt.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        cxt.fillStyle = backcolor;
+        cxt.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+        for (var i = 0; i < star.length; i++) {
+            drawStar(cxt, star[i].r, star[i].r / 2.0, star[i].x, star[i].y, star[i].a, nextcolor);
+        };
+
+    }
+    </script>
+</body>
+
+</html>

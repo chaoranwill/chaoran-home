@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>按钮组合</title>
+    <meta charset='utf-8'>
+    <style type="text/css">
+        span{
+            display: inline-block;
+            border-style: solid;
+            border-width: 4px 4px 0;
+            border-color: #fff transparent transparent;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .u-btns{
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+        .u-btn{
+            display: inline-block;
+            float: left;
+            padding: 6px 15px;
+            margin: 0px;
+            font-size: 12px;
+            color: #fff;
+            border: 1px solid #2b88bf;
+            background:linear-gradient(#6dbde4,#399dd8);
+            border-width: 1px 1px 1px 0;
+            cursor: pointer;
+        }
+        button:first-child{
+            border-radius: 5px 0 0 5px;
+        }
+        button:last-child{
+            border-radius: 0 5px 5px 0;
+        }
+        ul{
+            position: absolute;
+            top: 13px;
+            left: auto;
+            right: 0px;
+            padding: 0;
+            display: inline-block;
+            list-style-type: none;
+            border: 1px solid #d0d0d0;
+            border-radius: 5px;
+        }
+        li,a{
+            height: 30px;
+            line-height: 30px;
+            text-decoration: none;
+            font-family: Arial;
+            font-size: 12px;
+            color: #333; 
+            cursor: pointer;
+        }
+        a{
+            display: block;
+            padding: 4px 8px;
+            text-align: center;
+        }
+        li:empty{
+            border-top: 1px solid #ddd;
+            height: 5px;
+            line-height: 5px;
+            margin: 0px;
+        }
+        li:hover{
+            background: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="u-btns">
+        <button class="u-btn" type="button">click</button>
+        <button class="u-btn" type="button">
+            <span></span>
+        </button>
+        <ul>
+            <li><a href="#">下拉式菜单项</a></li>
+            <li><a href="#">下拉式菜单项</a></li>
+            <li><a href="#">下拉式菜单项</a></li>
+            <li></li>
+            <li><a href="#">下拉式菜单项</a></li>
+        </ul>
+    </div>
+</body>
+</html>

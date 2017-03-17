@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html5 标签结构</title>
+	<link rel="icon" type="image/gif" href="../img/icon.jpg" size=16*16/>
+</head>
+<body>
+	<h3>mark</h3>
+	<p>Do you <mark>like</mark> me ?</p>
+	<h3>progress</h3>
+	<progress max="100" value="85"></progress>
+	<h3>time</h3>
+	<time datetime="2015-10-19T10:04" pubdate >日期：2015年10月19日  时间：10:04</time>
+	<h3>ruby</h3>
+	<ruby>
+		李超然
+		<rt>lichaoran</rt>
+		<rp>人名</rp>
+	</ruby>
+	<h3>wbr</h3>
+	<p>再牛逼的梦想，也抵不住傻逼似的坚持！再牛逼的梦想，也抵不住傻逼似的坚持！<wbr>no zuo no die</wbr>再牛逼的梦想，也抵不住傻逼似的坚持！傻逼似的坚持！</p>
+	<h3>details</h3>
+	<details>
+		<summary>琴湖14栋208</summary>
+		<ol start="4" reversed>
+			<li>李超然</li>
+			<li>谢金桃</li>
+			<li>饶也</li>
+			<li>刘艳琴</li>
+		</ol>
+	</details>
+	<h3>datalist</h3>
+	<input type="text" list="name"/>
+	<datalist id="name">
+		<option>李超然</option>
+		<option>谢金桃</option>
+		<option>饶也</option>
+		<option>刘艳琴</option>
+	</datalist>
+	<h3>新增表单属性</h3>
+	<input type="number" placeholder="请输入数字" max="100" min="0" step="2"/>
+	<form action="" method="POST" id="form1" oninput="x.value=parseInt(a.value)">
+        0<input id="a" type="range" min="0" max="50" step="5" name="rangedemo" value="0" />50
+        目前刻度值：<output name="x"></output><br/>
+        日期：<input type="date" name="time" />
+        颜色：
+        <input type="color" name="color" /><br /><br />
+        搜索域：
+        <input type="search"/>
+ 	</form>
+ 	<h3>iframe</h3>
+ 	<iframe seamless src="http://www.baidu.com"></iframe>
+ 	<form data-type="comment">
+ 		<h3>留言板</h3>
+ 		<p>
+ 			<span>姓名：</span>
+ 			<input type="text" required tabindex="1"/>
+ 		</p>
+ 		<p>
+ 			<span>邮件：</span>
+ 			<input type="email" tabindex="3" placeholder="请输入邮箱">
+ 		</p>
+ 		<p>
+ 			<span>留言</span><br/>
+ 			<textarea tabindex="2" spellcheck="true" cols="40" rows="5"></textarea>
+ 		</p>
+ 		<p>
+ 			<h3 contenteditable="true">此处可编辑</h3>
+ 		</p>
+ 	</form>
+</body>
+</html>
