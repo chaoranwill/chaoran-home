@@ -1,7 +1,7 @@
-import Hello from './Hello'
-import TestCon from './TestCon'
+import SlideNext from './slide/SlideNext'
+import SlideIndex from './slide/SlideIndex'
 
 export default [
-  Hello,
-  TestCon
+  SlideNext,
+  SlideIndex
 ]

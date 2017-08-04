@@ -1,12 +1,12 @@
 <template>
-  <div class="test-con">
+  <div class="slide-index">
     {{userName}}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'test-con',
+  name: 'slide-index',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
