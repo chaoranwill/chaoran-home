@@ -13,6 +13,10 @@ npm run dev
 npm run build
 
 ## include
-* 上滑翻页
-    - router: *http://localhost:8080/#/Transition*
-    - pages folder: slide
+#### 翻页
+    pages: pageSwitch
+
+    * 上滑翻页
+        - router: *http://localhost:8080/#/TransitionTop*
+    * 左滑翻页
+        - router: *http://localhost:8080/#/TransitionLeft*

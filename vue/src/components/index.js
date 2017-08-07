@@ -1,7 +1,7 @@
-import SlideNext from './slide/SlideNext'
-import SlideIndex from './slide/SlideIndex'
+import TransitionTopnext from './transition/TransitionTopnext'
+import TransitionTopindex from './transition/TransitionTopindex'
 
 export default [
-  SlideNext,
-  SlideIndex
+  TransitionTopnext,
+  TransitionTopindex
 ]

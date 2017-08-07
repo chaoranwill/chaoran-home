@@ -1,12 +1,12 @@
 <template>
   <div class="test">
     <transition name="slideUp">
-      <slide-index 
+      <transition-top-index 
       user-name='chaoran' 
       @touchstart.native = "onTouch($event)"
       @touchend.native = "onTouchend($event)"
       v-if="showItem == 'one'"/>
-      <slide-next v-if="showItem == 'two'"/>
+      <transition-top-next v-if="showItem == 'two'"/>
     </transition>
   </div>
 </template>
@@ -78,7 +78,7 @@ function getDirection(startx, starty, endx, endy) {
 }
 </script>
 <style lang="scss">
-html, body, #app, .test, .slide-index, .slide-next{
+html, body, #app, .test, .transition-top-index, .transition-top-next{
   padding: 0;
   margin: 0;
   height: 100%;
@@ -88,12 +88,12 @@ html, body, #app, .test, .slide-index, .slide-next{
   background-color: #303333;
 }
 .test {
-  .slide-index {
+  .transition-top-index {
     width: 100%;
     transition: all .5s ease;
     background-color: #303333;
   }
-  .slide-next {
+  .transition-top-next {
     transition: all .5s ease;
     background-color: #666;
   }

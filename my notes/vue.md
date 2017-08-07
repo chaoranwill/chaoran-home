@@ -405,7 +405,8 @@ var child = parent.$refs.profile
 #### router-link
 * tag   指定渲染标签类型
 * active-class  激活时样式n
-
+#### v-if && v-for 共存
+**先做v-for的loop,随后对每一个loop再应用v-if判断
 
 # javascript 经验总结
 #### fetch
@@ -415,3 +416,7 @@ var child = parent.$refs.profile
 #### asyn 函数
   * [asyn 函数的含义和用法](http://www.ruanyifeng.com/blog/2015/05/async.html)
 
+# css 经验总结
+#### 动画
+  * [css滤镜（css blur）](http://www.cnblogs.com/nzbin/p/6380679.html)
+  * 
