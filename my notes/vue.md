@@ -272,7 +272,8 @@ document.write('url: ' + vm.url);
   * .number  自动将用户的输入值转为 Number 类型
   * .trim    自动过滤用户输入的首尾空格
 
-## 父子组件通信
+# 组件间通信
+## 父子组件通信(props down && events up)
 #### props  （父-->子）
 
 ```javascript
@@ -289,6 +290,7 @@ Vue.component('child', {
 <child message="hello!"></child>
 ```
 
+## 子父组件通信
 #### on/emit  (子-->父)
 *父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件*
 **不能用 $on 侦听子组件抛出的事件，而必须在模板里直接用 v-on 绑定**
@@ -327,6 +329,8 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$refs.profile
 ```
 
+## 非父子组件通信
+#### 使用一个空的vue实例作为中央事件总线
 
 ## 过渡效果
 *插入、更新或者移除 DOM 时*
@@ -394,17 +398,26 @@ var child = parent.$refs.profile
 ```
 
 
+# webpack经验总结
+#### package
+  * dependencies：项目发布时的依赖
+  * devDependencies：项目开发时的依赖
+  * scripts：编译项目的一些命令
+  * npm install node-sass --save-dev (保存到开发环境)
 
 # vue经验总结
 #### click
-* 普通元素： @click
-* 组件元素： @click.native
+  * 普通元素： @click
+  * 组件元素： @click.native
+
 #### slot
-* 非必要元素
-* 可自定义
+  * 非必要元素
+  * 可自定义
+
 #### router-link
-* tag   指定渲染标签类型
-* active-class  激活时样式n
+  * tag   指定渲染标签类型
+  * active-class  激活时样式
+
 #### v-if && v-for 共存
 **先做v-for的loop,随后对每一个loop再应用v-if判断
 
@@ -419,4 +432,10 @@ var child = parent.$refs.profile
 # css 经验总结
 #### 动画
   * [css滤镜（css blur）](http://www.cnblogs.com/nzbin/p/6380679.html)
-  * 
+
+
+# 高效开发
+## 工具设置
+#### webpack
+    * [引入sass 全局变量，minxin，function等](https://zhuanlan.zhihu.com/p/28159877)
+
