@@ -1,10 +1,10 @@
 [TOC]
-## 属性与方法
+## 1. 属性与方法
 不要在实例属性或者回调函数中（例如,`vm.$watch('a', newVal => this.myMethod())`使用箭头函数。因为箭头函数会绑定父级上下文，所以 `this` 不会按照预期指向 Vue 实例，然后 `this.myMethod` 将是未定义。
 
-## 语法
+## 2. 语法
 
-#### v-  指令是带有v-的特殊属性
+#### 2.1 v-  指令是带有v-的特殊属性
   1. v-if 条件渲染
   2. v-show
   2. v-else   (必须在v-if/v-else-if/v-show指令后)
@@ -63,12 +63,16 @@
     <!-- 组件 -->
     <my-component v-once :comment="msg"></my-component>
   ```
-#### 表达式——提供了JavaScript表达式支持
-#### 参数——指令后以冒号声明
+
+#### 2.2 表达式
+  提供了JavaScript表达式支持
+
+#### 2.3 参数——指令后以冒号声明
 ```html
   <a v-bind:href="url">超然haha</a>
 ```
-#### 过滤器
+
+#### 2.4 过滤器
 ```html
 <div id="app">
   {{ message | capitalize }}
@@ -90,7 +94,8 @@ new Vue({
 })
 </script>
 ```
-#### 缩写
+
+#### 2.5 缩写
   1. v-bind
   2. v-on
   ```html
@@ -105,8 +110,8 @@ new Vue({
   <a @click="doSomething"></a>
   ```
 
-## 计算属性
-#### computed 属性默认只有 getter ，不过在需要时你也可以提供一个 setter 
+## 3. 计算属性computed
+computed 属性默认只有 getter ，不过在需要时你也可以提供一个 setter 
 ```javascript
  var vm = new Vue({
   el: '#app',
@@ -136,14 +141,16 @@ document.write('<br>');
 document.write('url: ' + vm.url);
 ```
 
-## 特殊属性
-#### key   主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes
+## 4. 特殊属性
+#### 4.1 key
+主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes
 
   ```html
   <li v-for="item in items" :key="item.id">...</li>
   ```
 
-#### ref   给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上
+#### 4.2 ref
+给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上
 
   ```html
     <!-- vm.$refs.p will be the DOM node -->
@@ -152,7 +159,8 @@ document.write('url: ' + vm.url);
   <child-comp ref="child"></child-comp>
   ```
 
-#### is  用于动态组件,决定哪个组件被渲染
+#### 4.3 is
+用于动态组件,决定哪个组件被渲染
 
   ```html
     <!-- 动态组件由 vm 实例的属性值 `componentId` 控制 -->
@@ -161,7 +169,8 @@ document.write('url: ' + vm.url);
   <component :is="$options.components.child"></component>
   ```
 
-#### keep-alive  缓存不活动的组件实例，而不是销毁它们,保留组件状态避免重新渲染
+#### 4.4 keep-alive
+缓存不活动的组件实例，而不是销毁它们,保留组件状态避免重新渲染
 
   ```html
   <!-- 基本 -->
@@ -170,11 +179,11 @@ document.write('url: ' + vm.url);
   </keep-alive>
   ```
 
-#### include && exclude 允许组件有条件的缓存
-  
+#### 4.6 include && exclude
+允许组件有条件的缓存
 
-## vue 样式绑定
-#### class属性
+## 5. vue 样式绑定
+#### 5.1 class属性
   * v-bind:class
   ```html
   <div v-bind:class="{ active: isActive }"></div>
@@ -183,7 +192,7 @@ document.write('url: ' + vm.url);
     ```html
     <div v-bind:class="[activeClass, errorClass]"></div>
     ```
-#### style(内联样式)
+#### 5.2 style(内联样式)
   * v-bind:style 
   ```html
     <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">超然haha</div>
@@ -194,8 +203,8 @@ document.write('url: ' + vm.url);
   ```
   *当 v-bind:style 使用需要特定前缀的 CSS 属性时，如 transform ，Vue.js 会自动侦测并添加相应的前缀。*
 
-## vue事件处理器
-#### v-on
+## 6. vue事件处理器
+#### 6.1 v-on
   * 接收方法
   ```html
   <button v-on:click="greet">Greet</button>
@@ -229,8 +238,8 @@ document.write('url: ' + vm.url);
     * .right
     * .middle
 
-## 表单控件绑定
-#### 基础用法
+## 7. 表单控件绑定
+#### 7.1 基础用法
   * 文本
   * 复选框
   * 单选按钮
@@ -267,14 +276,14 @@ document.write('url: ' + vm.url);
   </div>
   ```
 
-#### 修饰符
+#### 7.2 修饰符
   * .lazy    从输入转变为在 change 事件中同步
   * .number  自动将用户的输入值转为 Number 类型
   * .trim    自动过滤用户输入的首尾空格
 
-# 组件间通信
-## 父子组件通信(props down && events up)
-#### props  （父-->子）
+## 8. 组件间通信
+### 8.1 父子组件通信(props down && events up)
+#### 8.1.1 props  （父-->子）
 
 ```javascript
 Vue.component('child', {
@@ -290,8 +299,8 @@ Vue.component('child', {
 <child message="hello!"></child>
 ```
 
-## 子父组件通信
-#### on/emit  (子-->父)
+### 8.2 子父组件通信
+#### 8.2.1 on/emit  (子-->父)
 *父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件*
 **不能用 $on 侦听子组件抛出的事件，而必须在模板里直接用 v-on 绑定**
 ```html
@@ -315,7 +324,7 @@ Vue.component('button-counter', {
 })
 ```
 
-#### 子组件索引
+#### 8.3.1 子组件索引
 * JavaScript 中直接访问子组件。为此可以使用 ref 为子组件指定一个索引 ID*
 ```html
 <div id="parent">
@@ -329,12 +338,12 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$refs.profile
 ```
 
-## 非父子组件通信
-#### 使用一个空的vue实例作为中央事件总线
+### 8.3 非父子组件通信
+#### 8.3.1 使用一个空的vue实例作为中央事件总线
 
-## 过渡效果
+## 9. 过渡效果
 *插入、更新或者移除 DOM 时*
-#### 单元素组件的过度
+#### 9.1 单元素组件的过度
   * v-if
   * v-show
   * 动态组件
@@ -373,7 +382,7 @@ var child = parent.$refs.profile
   2. 如果过渡组件提供了 JavaScript 钩子函数，这些钩子函数将在恰当的时机被调用。
   3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，和Vue的 nextTick 概念不同)
 
-#### 过渡的css类名
+#### 9.2 过渡的css类名
 * v-enter                 过渡开始状态
 * v-enter-active          过渡状态
 * v-enter-to              过渡的结束状态（插入后）
@@ -397,45 +406,4 @@ var child = parent.$refs.profile
 </div>
 ```
 
-
-# webpack经验总结
-#### package
-  * dependencies：项目发布时的依赖
-  * devDependencies：项目开发时的依赖
-  * scripts：编译项目的一些命令
-  * npm install node-sass --save-dev (保存到开发环境)
-
-# vue经验总结
-#### click
-  * 普通元素： @click
-  * 组件元素： @click.native
-
-#### slot
-  * 非必要元素
-  * 可自定义
-
-#### router-link
-  * tag   指定渲染标签类型
-  * active-class  激活时样式
-
-#### v-if && v-for 共存
-**先做v-for的loop,随后对每一个loop再应用v-if判断
-
-# javascript 经验总结
-#### fetch
-  * [深入浅出Fetch API](http://web.jobbole.com/84924/)
-  * [在 JS 中使用 fetch 更加高效地进行网络请求](http://blog.parryqiu.com/2016/03/02/using_fetch_in_nodejs/)
-
-#### asyn 函数
-  * [asyn 函数的含义和用法](http://www.ruanyifeng.com/blog/2015/05/async.html)
-
-# css 经验总结
-#### 动画
-  * [css滤镜（css blur）](http://www.cnblogs.com/nzbin/p/6380679.html)
-
-
-# 高效开发
-## 工具设置
-#### webpack
-    * [引入sass 全局变量，minxin，function等](https://zhuanlan.zhihu.com/p/28159877)
 

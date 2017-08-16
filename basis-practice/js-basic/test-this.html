@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+var a = 0;
+
+function foo() {
+    console.log(this.a);
+}
+var obj1 = {
+    a: 1
+};
+var obj2 = {
+    a: 2
+};
+foo.call(obj1); //1
+foo.call(obj2); //2
+
+
+/*先从foo函数内部查找是否有局部变量value，如果没有，就根据书写的位置，查找上面一层的代码，在这里是全局作用域，也就是value等于1，所以最后会打印1*/
+var value = 1;
+
+function foo() {
+    console.log(value);
+}
+
+function bar() {
+    var value = 2;
+    foo();
+}
+
+bar();//1
+</script>
+
+</html>

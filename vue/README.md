@@ -17,6 +17,6 @@ npm run build
     pages: pageSwitch
 
     * 上滑翻页
-        - router: *http://localhost:8080/#/TransitionTop*
+        - router: http://localhost:8080/#/TransitionTop
     * 左滑翻页
-        - router: *http://localhost:8080/#/TransitionLeft*
+        - router: http://localhost:8080/#/TransitionLeft
