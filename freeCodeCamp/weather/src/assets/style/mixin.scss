@@ -1,0 +1,65 @@
+@mixin m-left-temp {
+  .m-left-temp {
+    color: #fff;
+    font-weight: 300;
+    .temper {
+      font-size: 150px;
+      
+    }
+    .mouth {
+      font-size: 30px;
+    }
+    .weather {
+      font-size: 24px;
+      opacity: .8;
+    }
+    .dots {
+      margin-top: 40px;
+      .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 5px;
+        border-radius: 100%;
+        background-color: RGBA(255,255,255,.5);
+        cursor: pointer;
+      }
+      .dot-cur {
+        background-color: RGB(255,255,255);
+      }
+    }
+  }  
+}
+
+@mixin u-stat-item {
+  .u-stat-item {
+    text-align: center;
+    img {
+      height: 45px;
+    }
+  }
+} 
+
+@mixin m-list-item {
+  .m-list-item {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    line-height: 100%;
+    .time {
+      flex: 3;
+    }
+    .weather {
+      flex: 2;
+      text-align: right;
+    }
+    .temp {
+      float: right;
+      width: 90px;
+      text-align: right;
+      font-size: 22px;
+      color: RGB(239,88,150);
+      text-shadow: 0 0 1px RGBA(239,88,150,.8);
+    }
+  }
+}

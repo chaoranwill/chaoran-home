@@ -1,0 +1,52 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    background-color: #926666;
+}
+.main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -300px;
+    width: 500px;
+    padding: 30px 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 4px;
+    .content {
+        font-size: 24px;
+        font-weight: bold;
+        .sign {
+            width: 100%;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 50px;
+            text-align: right;
+        }
+    }
+    .ft {
+        width: 100%;
+        a {
+            display: inline-block;
+            width: 40px;
+            line-height: 40px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #5C5858;
+            border-radius: 4px;
+        }
+        a:hover{
+            cursor: pointer;
+        }
+        .share {
+            float: left;
+            margin-right: 6px;
+        }
+        .change {
+            width: auto;
+            padding: 0 20px;
+            float: right;
+        }
+    }
+}

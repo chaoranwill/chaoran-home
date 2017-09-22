@@ -25,11 +25,11 @@ const router = new Router({
       name: 'TransitionLeft',
       component: TransitionLeft,
       children: [{
-        path: '/',
+        path: '',
         name: 'index',
         component: TransitionLeftIndex
       },{
-        path: '/TransitionLeft/page1',
+        path: '/page1',
         name: 'page1',
         component: TransitionLeftPage1
       },{

@@ -4,6 +4,7 @@
       <div class="back" @click="handleBack"><</div>
       <h3>page1</h3>
     </header>
+    <li><router-link to="/TransitionLeft/page2">page2</router-link></li>
   </div>
 </template>
 <script>

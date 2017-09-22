@@ -2,7 +2,7 @@
   <div class="transition-left-index">
     <header><h3>主页</h3></header>
     <ul>
-        <li><router-link to="/TransitionLeft/page1">page1</router-link></li>
+        <li><router-link to="/page1">page1</router-link></li>
         <li><router-link to="/TransitionLeft/page2">page2</router-link></li>
       </ul>
   </div>
