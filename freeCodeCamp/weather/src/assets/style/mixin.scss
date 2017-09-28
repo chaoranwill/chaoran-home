@@ -17,8 +17,8 @@
       margin-top: 40px;
       .dot {
         display: inline-block;
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
         margin-right: 5px;
         border-radius: 100%;
         background-color: RGBA(255,255,255,.5);
@@ -36,6 +36,7 @@
     text-align: center;
     img {
       height: 45px;
+      margin-bottom: 10px;
     }
   }
 } 
@@ -43,7 +44,7 @@
 @mixin m-list-item {
   .m-list-item {
     width: 100%;
-    padding: 0 20px;
+   // padding: 0 20px;
     display: flex;
     line-height: 100%;
     .time {
@@ -55,7 +56,7 @@
     }
     .temp {
       float: right;
-      width: 90px;
+      width: 150px;
       text-align: right;
       font-size: 22px;
       color: RGB(239,88,150);

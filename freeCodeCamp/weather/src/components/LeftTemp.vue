@@ -1,10 +1,10 @@
 <template>
   <div class="m-left-temp">
     <div class="temper">
-      24°
+      {{temp}}°
     </div>
-    <div class="mouth">September</div>
-    <div class="weather">sunny</div>
+    <div class="mouth">{{curMonth}}</div>
+    <div class="weather">{{weather}}</div>
     <div class="dots">
       <i class="dot"></i>
       <i class="dot"></i>
@@ -17,6 +17,7 @@
 <script>
 export default {
   name: 'm-left-temp',
+  props: ['curMonth', 'temp', 'weather'],
   data () {
     return {
       

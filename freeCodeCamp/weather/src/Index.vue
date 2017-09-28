@@ -2,9 +2,9 @@
   <div class="g-index">
     <div class="left">
       <div class="date">
-        July 8, 2016
+        {{date}}
       </div>
-      <m-left-temp />
+      <m-left-temp :curMonth="curMonth" :temp="temp" :weather="weather" />
     </div>
     <div class="main">
       <div class="statistic">
@@ -13,29 +13,20 @@
           <a href="">more</a>
         </div>
       </div>
-      <div class="temp-list">
-        <u-stat-item type="hum" />
-        <u-stat-item type="wind_dir" />
-        <u-stat-item type="wind_spd" />
-        <u-stat-item type="cloud" />
+      <div class="cond-list">
+        <u-stat-item type="hum" :state="hum" />
+        <u-stat-item type="wind_dir" :state="wind_dir" :deg="wind_deg" />
+        <u-stat-item type="wind_spd" :state="wind_spd" />
+        <u-stat-item type="cloud" :state="vis" />
       </div>
       <div class="temp-info">
         <ul class="temp-title">
-          <li class="title-item title-cur">Today</li>
-          <li class="title-item">Week</li>
-          <li class="title-item">Month</li>
+          <li :class="[curIndex == 1 ? 'title-cur' :'false', 'title-item']"  @click="switchHour">Today</li>
+          <li :class="[curIndex == 2 ? 'title-cur' :'false', 'title-item']" @click="switchWeek">Week</li>
+          <!-- <li :class="[curIndex == 3 ? 'title-cur' :'false', 'title-item']">Month</li> -->
         </ul>
-        <div class="temp-list">
-          <m-list-item />
-        </div>
-        <div class="temp-list">
-          <m-list-item />
-        </div>
-        <div class="temp-list">
-          <m-list-item />
-        </div>
-        <div class="temp-list">
-          <m-list-item />
+        <div class="temp-list" v-for="(data, index) in weatherData" :key="index">
+          <m-list-item :data="data" />
         </div>
       </div>
     </div>
@@ -46,17 +37,99 @@
 export default {
   data () {
     return {
-      
+      hum: 0,
+      wind_dir: 0,
+      wind_spd: 0,
+      temp: 0,
+      weather: '',
+      vis:'',
+      wind_deg:'',
+      dates: new Date(),
+      month: this.$store.state.month,
+      hourData:[],
+      weatherData: [],
+      curIndex: 1
     }
   },
+  computed: {
+    date() {
+      return this.month[parseInt(this.dates.getMonth())] + ' ' + this.dates.getDate() + ' ,' + this.dates.getFullYear()
+    },
+    curMonth() {
+      return this.month[parseInt(this.dates.getMonth())]
+    }
+    
+  },
   mounted() {
-    var url = 'https://free-api.heweather.com/v5/now'
-    /* this.$http.get(url).then(function(data){
-        console.log(data)
-    },function(response){
-        console.info(response);
-    }) */
+    var _t = this
+    console.log()
+    var url = 'https://free-api.heweather.com/v5/now?city='+cip+'&key='+key+'&lang=en'
+    
+    _t.$http.get(url)
+    .then(function (res) {
+      _t.hum = res.body.HeWeather5[0].now.hum + '%'
+      _t.wind_dir = res.body.HeWeather5[0].now.wind.dir
+      _t.wind_deg = res.body.HeWeather5[0].now.wind.deg
+      _t.wind_spd = res.body.HeWeather5[0].now.wind.spd + ' km/h'
+      _t.vis = res.body.HeWeather5[0].now.vis + 'km'
+      _t.weather = res.body.HeWeather5[0].now.cond.txt
+      _t.temp = res.body.HeWeather5[0].now.tmp
+      console.log(res.body.HeWeather5[0].now.tmp)
+    })
+    _t.switchHour()
+    
+  },
+  methods: {
+    switchWeek () {
+      var _t = this
+      _t.curIndex = 2
+      let weekUrl = 'https://free-api.heweather.com/v5/forecast?city='+cip+'&key='+key+'&lang=en'
+      _t.$http.get(weekUrl)
+      .then(function (res) {
+        if(res.ok === true){
+          let wData = res.body.HeWeather5[0].daily_forecast
+          _t.weatherData = []
+          for(let i=0; i< wData.length; i++){
+            let item = {
+              'time': wData[i].date.replace('-','/'),
+              'cond': wData[i].cond.txt_d,
+              'tmp': wData[i].tmp.min+'~'+wData[i].tmp.max+'°C'
+            }
+          
+            _t.weatherData.push(item)
+          }
+        }
+      })
+    },
+    switchHour () {
+      var _t = this
+      _t.curIndex = 1
+      var hourUrl = 'https://free-api.heweather.com/v5/hourly?city='+cip+'&key='+key+'&lang=en'
+      _t.$http.get(hourUrl)
+      .then(function (res) {
+        if(res.ok === true){
+          _t.hourData = res.body.HeWeather5[0].hourly_forecast
+          _t.weatherData = []
+          var hData = res.body.HeWeather5[0].hourly_forecast
+          for(let i=0; i< hData.length; i++){
+            let item = {
+              'time': dateFormate(hData[i].date),
+              'cond': hData[i].cond.txt,
+              'tmp': hData[i].tmp+'°C'
+            }
+            _t.weatherData.push(item)
+          }
+        }
+        
+      })
+    }
   }
+}
+function dateFormate(date) {
+  let num = parseInt(date.split(' ')[1].split(':')[0])
+  console.log(num < 12 ? num+':00 am' : (num-12)+':00 pm')
+  return num < 12 ? num+':00 am' : (num-12)+':00 pm'
+  //return (date.split(' ')[1])
 }
 </script>
 <style lang="scss">
@@ -116,10 +189,14 @@ export default {
         text-shadow: none;
       }
     }
-    .temp-list {
-      margin: 40px 0 50px;
+    .cond-list {
+      margin: 50px 0 60px;
       display: flex;  
     }
+    .temp-list {
+      margin-top: 50px;
+    }
+
     .u-stat-item {
       flex: 1;
     }
@@ -132,6 +209,7 @@ export default {
         margin-right: 20px;
         padding: 0 10px 18px;
         margin-bottom: -3px;
+        cursor: pointer;
       }
       .title-cur {
         border-bottom: 6px solid;

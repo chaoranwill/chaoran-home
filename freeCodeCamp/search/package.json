@@ -1,8 +1,8 @@
 {
-  "name": "weather",
+  "name": "search",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "chaoran",
+  "author": "chaoran <1293441598@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -11,9 +11,7 @@
   },
   "dependencies": {
     "vue": "^2.4.2",
-    "vue-resource": "^1.3.4",
-    "vue-router": "^2.7.0",
-    "vuex": "^2.4.0"
+    "vue-resource": "^1.3.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

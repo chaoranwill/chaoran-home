@@ -2,31 +2,20 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
 import map from 'lodash/map'
-import components from '@/components'
+import components from './components'
 import VueResource from 'vue-resource'
-import store from './store/store'
 
 Vue.config.productionTip = false
 
 Vue.use(VueResource)
 
-const key = window.key = 'd3bc5bd960634da7af9e9a6aa6d181af'
-const cip = window.cip = returnCitySN['cip']
-
-
-/* $.get('https://free-api.heweather.com/v5/now',{city: cip,key:key}, function (res) {
-  console.log(res)
-}) */
 console.log(components)
 map(components, (cmp, name) => Vue.component(cmp.name, cmp))
-//alert(returnCitySN['cip'] + returnCitySN['cname']);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
-  store,
   template: '<App/>',
   components: { App }
 })

@@ -1,12 +1,13 @@
 <template>
   <ul class="m-list-item">
-    <li class="time">1:00pm</li>
-    <li class="weather">Sunny</li>
-    <li class="temp">24°C</li>
+    <li class="time">{{data.time}}</li>
+    <li class="weather">{{data.cond}}</li>
+    <li class="temp">{{data.tmp}}</li>
   </ul>
 </template>
 <script>
 export default {
-  name: 'm-list-item'
+  name: 'm-list-item',
+  props: ['data']
 }
 </script>
